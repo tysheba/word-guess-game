@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).one("keyup", function() {
 
 // Select a theme and create an array of words
 var words = ["zeus", "apollo", "achilles", "styx", "warrior"];
@@ -10,25 +10,29 @@ console.log(randWord);
 var maskArray = [];
 var mask;
    for (i=0; i < randWord.length; i++) {
-    mask = "_";
+    mask = "_ ";
     maskArray.push(mask);
     console.log(maskArray);
-   }
+   
 // create a variable that creates an element to hold the masked letters
-var maskspace = $("<p>");
+var maskspace = $("<span>");
+console.log(maskArray);
 // add a style class to the masked spaces
 maskspace.addClass("mask-style");
 // add a data attribute to the maskspace
 maskspace.attr("data-mask", maskArray[i]);
 // add the mask text to the maskspace
-maskspace.text,(maskArray[i]);
+maskspace.text(maskArray[i]);
 // append to guessword paragraph
 $("#guessword").append(maskspace);
 
 
-
-
 // Use key events to listen for the letters that players will type
+document.onkeyup = function(event) {
+    var userguess = event.key;
+    console.log(userguess);
+}
+   }
 // Display Wins (# of times user guessed the word correctly)
 // When game starts display a mask for the number of letters in the word the player needs to guess
 // Reveal correct letters as they are guessed

@@ -14,7 +14,7 @@
 <body>
   <header>
     <h1>Greek Mythology Word Guessing Game</h1>
-    <h2>Press any key to get started</h2>  
+    <h2 id = "start">Press any key to get started</h2>  
     <img src="assets/images/olympus.jpg">
   </header>
 
@@ -22,12 +22,13 @@
     <div class="row">
       <div class="col-sm-6 game">
         <h2>This is the game side</h2>
-        <p id="guessword">x</p>
-        <p id="playerguesses">Letters alreday guessed</p>
-        <p id="remaining">Number of remaining guesses</p>
+        <div id="guessword"></div>
+        <div id="playerguesses">Letters already guessed</div>
+        <div id="remaining">Number of remaining guesses</div>
       </div>
       <div class="col-sm-6 scoreboard">
         <h2>This is the scoreboard side</h2>
+        <div id="wins">Wins</div>
       </div>
     </div>
   </div>
