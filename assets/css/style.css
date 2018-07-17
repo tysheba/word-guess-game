@@ -34,3 +34,7 @@ header img {
 .mask-style {
     font-size: 36px;
 }
+.guessstyle {
+    break-before: initial;
+    display: inline-block;
+}
