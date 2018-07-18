@@ -68,10 +68,17 @@ document.onkeyup = function(event) {
     $("#remaining").text("You have " + guessremain + " guesses remaining");
 
     var rightguess = [];
-    if (randWord.indexOf(letter) > 0 ) {
+    if (randWord.indexOf(letter) > -1 ) {
         rightguess.push(letter);
-    //   var  n = randWord.indexOf(letter);
-    //   maskArray[n] = letter;
+      var  n = randWord.indexOf(letter);
+      maskArray[n] = letter;
+      for (i=0; i < maskArray.length; i++) {
+        $("maskspace").empty(); 
+        maskspace.text(maskArray[i]);
+        $("#guessword").text(maskArray);   
+      }
+      
+     
     }
 
 }
