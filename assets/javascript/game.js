@@ -72,10 +72,18 @@ document.onkeyup = function(event) {
         rightguess.push(letter);
       var  n = randWord.indexOf(letter);
       maskArray[n] = letter;
-      for (i=0; i < maskArray.length; i++) {
-        $("maskspace").empty(); 
+      $("#guessword").empty();
+      for (i=0; i < maskArray.length; i++) { 
+        var maskspace = $("<span>");
+// add a style class to the masked spaces
+        maskspace.addClass("mask-style");
+// add a data attribute to the maskspace
+        maskspace.attr("data-mask",i);
+// add the mask text to the maskspace
         maskspace.text(maskArray[i]);
-        $("#guessword").text(maskArray);   
+// append to guessword paragraph
+        $("#guessword").append(maskspace);
+           
       }
       
      
