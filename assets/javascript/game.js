@@ -9,11 +9,12 @@ console.log(randWord);
 // Display mask for the number of letters in the random word
 var maskArray = [];
 var mask;  
-    for (i=0; i < randWord.length; i++) {
+var win = 0;
+var loss = 0;   
+for (i=0; i < randWord.length; i++) {
         mask = "_ ";
         maskArray.push(mask);
-var win = 0;
-var loss = 0;
+
 
 $("#wins").text("Wins: " + win);
 $("#losses").text("Losses: "+ loss);
@@ -46,7 +47,7 @@ $("#losses").text("Losses: "+ loss);
 var lettersUsedArray = [];
 var guessremain = 10;
 
-document.onkeyup = function(event) { 
+$(document).on("keyup", function (event) { 
     var letter = event.key;
     
     
@@ -66,7 +67,6 @@ document.onkeyup = function(event) {
     userguess.addClass("guessstyle");
     userguess.text(letter);
     $("#playerguesses").append(userguess);
-    
     console.log(lettersUsedArray);
     guessremain = guessremain -1;
     console.log(guessremain);
@@ -93,7 +93,8 @@ document.onkeyup = function(event) {
     console.log(JSON.stringify(lettersArray)==JSON.stringify(maskArray));
     if (JSON.stringify(lettersArray)==JSON.stringify(maskArray)) { 
         win++;
-        alert("The word is "+randWord + " You Win!"); 
+        $("#wins").text("Wins: " + win);
+        // alert("The word is "+randWord + " You Win!"); 
     }
 
 }  
@@ -106,7 +107,7 @@ document.onkeyup = function(event) {
      
     }
 
-}
+});
 
 
    
