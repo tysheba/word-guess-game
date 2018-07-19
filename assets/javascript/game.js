@@ -45,6 +45,7 @@ $("#losses").text("Losses: "+ loss);
 // Limit user to 10 guesses
 var lettersUsedArray = [];
 var guessremain = 10;
+
 document.onkeyup = function(event) { 
     var letter = event.key;
     
@@ -85,15 +86,23 @@ document.onkeyup = function(event) {
 // add the mask text to the maskspace
         maskspace.text(maskArray[i]);
 // append to guessword paragraph
-        $("#guessword").append(maskspace);
-// Check if Win
-    console.log("Array1: " + lettersArray);
-    console.log("Array2: " + maskArray);
-    if (lettersArray===maskArray) {
-        Alert("You Win!!");
-        }
-      }  
-    }}
+        $("#guessword").append(maskspace);}
+// Check if Win       
+        console.log("Array0: " + lettersArray);
+        console.log("Array00: " + maskArray);
+    console.log(JSON.stringify(lettersArray)==JSON.stringify(maskArray));
+    if (JSON.stringify(lettersArray)==JSON.stringify(maskArray)) { 
+        win++;
+        alert("The word is "+randWord + " You Win!"); 
+    }
+
+}  
+    }
+
+
+
+
+   
      
     }
 
