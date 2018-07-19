@@ -12,6 +12,11 @@ var mask;
     for (i=0; i < randWord.length; i++) {
         mask = "_ ";
         maskArray.push(mask);
+var win = 0;
+var loss = 0;
+
+$("#wins").text("Wins: " + win);
+$("#losses").text("Losses: "+ loss);
 
 // create a variable that creates an element to hold the masked letters
 
@@ -26,8 +31,6 @@ var mask;
 // append to guessword paragraph
         $("#guessword").append(maskspace); 
 } 
-
-// console.log(randWord.charAt(1));
 
 // push letters in randWord to the lettersArray
     var lettersArray = [];
@@ -45,7 +48,8 @@ var guessremain = 10;
 document.onkeyup = function(event) { 
     var letter = event.key;
     
-// **if letter is not included in letterUsedArray AND is included in possibleArray add it to array and append to paragraph    
+    
+// **if letter is not included in letterUsedArray add it to array and append to letters used    
     if (event.keyCode >= 65 && event.keyCode <= 90 
     && lettersUsedArray.length < 10
     
@@ -67,11 +71,10 @@ document.onkeyup = function(event) {
     console.log(guessremain);
     $("#remaining").text("You have " + guessremain + " guesses remaining");
 
-    var rightguess = [];
-    if (randWord.indexOf(letter) > -1 ) {
-        rightguess.push(letter);
-      var  n = randWord.indexOf(letter);
-      maskArray[n] = letter;
+
+    for (n=0; n < randWord.length; n++) {
+      if (letter===randWord[n]) {
+          maskArray[n] = letter;
       $("#guessword").empty();
       for (i=0; i < maskArray.length; i++) { 
         var maskspace = $("<span>");
@@ -83,17 +86,20 @@ document.onkeyup = function(event) {
         maskspace.text(maskArray[i]);
 // append to guessword paragraph
         $("#guessword").append(maskspace);
-           
-      }
-      
+// Check if Win
+    console.log("Array1: " + lettersArray);
+    console.log("Array2: " + maskArray);
+    if (lettersArray===maskArray) {
+        Alert("You Win!!");
+        }
+      }  
+    }}
      
     }
 
 }
-else if (lettersUsedArray.length > 9) {
 
-}
-}
+
    
 
 
