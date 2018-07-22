@@ -1,24 +1,35 @@
-$(document).one("keyup", function() {
+var win = 0;
+var loss = 0;  
+var randWord;
+var maskArray = [];
+var mask; 
+var lettersArray = []; 
+var lettersUsedArray = [];
+var guessremain = 10;
 
+$(document).one("keyup", function() {
+myFunction ();
+function myFunction () {
+
+maskArray = [];
+guessremain = 10;
+lettersUsedArray = [];
+lettersArray = [];
 // Select a theme and create an array of words
 var words = ["zeus", "apollo", "achilles", "styx", "warrior"];
 // Randomly select a word from the words array
 var randNum = Math.floor(Math.random() * words.length);
-var randWord = words[randNum];
+randWord = words[randNum];
 console.log(randWord);
 // Display mask for the number of letters in the random word
-var maskArray = [];
-var mask;  
-var win = 0;
-var loss = 0;   
+$("#remaining").text("You have " + guessremain + " guesses remaining");
+$("#playerguesses").text("");
+ 
 for (i=0; i < randWord.length; i++) {
         mask = "_ ";
         maskArray.push(mask);
-
-
 $("#wins").text("Wins: " + win);
 $("#losses").text("Losses: "+ loss);
-
 // create a variable that creates an element to hold the masked letters
 
         var maskspace = $("<span>");
@@ -34,18 +45,16 @@ $("#losses").text("Losses: "+ loss);
 } 
 
 // push letters in randWord to the lettersArray
-    var lettersArray = [];
     for (j=0; j<randWord.length; j++) {
     var x = randWord.charAt(j);
     lettersArray.push(x);
     // console.log(lettersArray);
     }
 
-
+}
 // Use key events to listen for the letters that players will type
 // Limit user to 10 guesses
-var lettersUsedArray = [];
-var guessremain = 10;
+
 
 $(document).on("keyup", function (event) { 
     var letter = event.key;
@@ -53,7 +62,6 @@ $(document).on("keyup", function (event) {
     
 // **if letter is not included in letterUsedArray add it to array and append to letters used    
     if (event.keyCode >= 65 && event.keyCode <= 90 
-    && lettersUsedArray.length < 10
     
     && lettersUsedArray.indexOf(letter) < 0
     ){
@@ -67,7 +75,7 @@ $(document).on("keyup", function (event) {
     userguess.addClass("guessstyle");
     userguess.text(letter);
     $("#playerguesses").append(userguess);
-    console.log(lettersUsedArray);
+//     console.log(lettersUsedArray);
     guessremain = guessremain -1;
     console.log(guessremain);
     $("#remaining").text("You have " + guessremain + " guesses remaining");
@@ -94,7 +102,15 @@ $(document).on("keyup", function (event) {
     if (JSON.stringify(lettersArray)==JSON.stringify(maskArray)) { 
         win++;
         $("#wins").text("Wins: " + win);
+        $("#guessword").empty();
+        myFunction ();
         // alert("The word is "+randWord + " You Win!"); 
+    }
+    else if (guessremain===0) {
+            loss++;
+            $("#losses").text("Losses: " + loss);
+            $("#guessword").empty();
+            myFunction();
     }
 
 }  
