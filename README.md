@@ -21,3 +21,5 @@ The project is a useful learning tool
 
 ##Who maintains and contributes to the project
 The project is maintained by Tysheba Morgan
+
+https://tysheba.github.io/word-guess-game/
